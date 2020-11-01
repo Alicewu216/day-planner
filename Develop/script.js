@@ -84,13 +84,14 @@ $(document).ready(function () {
     //set color class past for passed hour
     if (hourCount < currentHour) {
       colInp.addClass("past");
-    } else if (hourCount == currentHour) {
+    } //set color class present for present hour
+    else if (hourCount == currentHour) {
       colInp.addClass("present");
-    } else {
+    } //set color class future for future hour
+    else {
       colInp.addClass("future");
     }
-    //set color class present for present hour
-    //set color class future for future hour
+
     var textInput = $("<textarea>");
     textInput.attr("rows", "2");
     textInput.attr("cols", "110");
