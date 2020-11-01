@@ -2,8 +2,7 @@
 var DateTime = luxon.DateTime;
 //save current weekday, month, day to dt variable
 var dt = DateTime.local().toLocaleString({ weekday: 'long', month: 'long', day: '2-digit' }); 
-var currentHour = DateTime.local().toLocaleString({ hour: '2-digit', hour12: false }); //=> '11:32'
-console.log(currentHour);
+var currentHour = DateTime.local().toLocaleString({ hour: '2-digit', hour12: false }); //=> '11'
 
 //output current time to screen
 $("#currentDay").text(dt);
@@ -36,6 +35,18 @@ for (var i=0; i< timeHour.length; i++) {
     //creat new col div for userinput with class, id, and add to tableRow
     var colInp = $("<div>");
     colInp.addClass("col-lg-10");
+    //set color class past for passed hour
+    if (hourCount < currentHour) {
+        colInp.addClass("past");
+    }
+    else if (hourCount == currentHour) {
+        colInp.addClass("present");
+    }
+    else {
+        colInp.addClass("future");
+    }
+    //set color class present for present hour
+    //set color class future for future hour
     var textInput = $("<textarea>");
     textInput.attr("rows", "2");
     textInput.attr("cols", "115");
@@ -50,27 +61,9 @@ for (var i=0; i< timeHour.length; i++) {
     saveBtn.append("<i class='far fa-save'></i>");
     btnDiv.append(saveBtn);
     tableRow.append(saveBtn);
-
-
-
-    //add time as column holding 1/12 space
-    /*
-    tableRow.append("<div class='col-lg-1'>"+timeHour[i] + "</div>");
-    //add textarea as column holding 10/12 space
-
-    tableRow.append("<div class='col-lg-10'><textarea rows='2' cols='115'></textarea></div>");
-    //add button as colum holding 1/12 space
-    tableRow.append("<div class='col-lg-1'><button class='btn btn-lg saveBtn'><i class='far fa-save'></i></button></div>");
-    //append to background div
-    /*$(".btn").attr("id",timeHour[i]+'btn');
-    $(".textArea").attr("id", timeHour[i]+'text');*/
+    // add tableRow to tbBg
     $("#tbBg").append(tableRow);
-    //set color class past for passed hour
-    if (hourCount < currentHour) {
-
-    }
-    //set color class present for present hour
-    //set color class future for future hour
+    
 }
 /*
 //when click save button
